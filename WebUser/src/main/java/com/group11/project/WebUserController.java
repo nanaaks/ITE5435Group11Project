@@ -8,17 +8,17 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class WebUserController {
 	@Autowired
-	private WebUserRepo repo;
+	private WebUserService webUserService;
 
-	@GetMapping("/user-form")
+	@GetMapping("/webuser-form")
 	public String showForm(Model model) {
-		model.addAttribute("webUser", new WebUser());
-		return "index";
+		model.addAttribute("webuser", new WebUser());
+		return "webuser";
 	}
 
-	@PostMapping("/StoringUserData")
-	public String storeUser(@ModelAttribute WebUser webUser) {
-		repo.save(webUser); 
-		return "redirect:/user-form";
+	@PostMapping("/StoringWebUserData")
+	public String storeWebUser(@ModelAttribute WebUser webUser) {
+		webUserService.saveWebUser(webUser);
+		return "redirect:/webuser-form";
 	}
 }
