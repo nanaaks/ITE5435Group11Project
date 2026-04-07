@@ -9,35 +9,23 @@ import java.util.List;
 public class OrderRestController {
 
 	@Autowired
-	private OrderRepo orderRepo;
-
-	@Autowired
-	private ShoppingCartRepo cartRepo;
-
-	@Autowired
-	private LineItemRepo itemRepo;
+	private OrderService orderService;
 
 	// URL: http://localhost:8086/api/orders/add
 	@PostMapping("/add")
 	public OrderClass addOrder(@RequestBody OrderClass order) {
-		return orderRepo.save(order);
+		return orderService.saveOrder(order);
 	}
 
 	// URL: http://localhost:8086/api/orders/all
 	@GetMapping("/all")
 	public List<OrderClass> getAllOrders() {
-		return orderRepo.findAll();
-	}
-
-	// URL: http://localhost:8086/api/orders/addCart
-	@PostMapping("/addCart")
-	public ShoppingCart addCart(@RequestBody ShoppingCart cart) {
-		return cartRepo.save(cart);
+		return orderService.getAllOrders();
 	}
 
 	// URL: http://localhost:8086/api/orders/addLineItem
 	@PostMapping("/addLineItem")
 	public LineItem addLineItem(@RequestBody LineItem item) {
-		return itemRepo.save(item);
+		return orderService.saveLineItem(item);
 	}
 }

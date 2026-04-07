@@ -7,16 +7,17 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/payment")
 public class PaymentRestController {
+
 	@Autowired
-	private PaymentRepo repo;
+	private PaymentService paymentService;
 
 	@PostMapping("/add")
 	public Payment addPayment(@RequestBody Payment payment) {
-		return repo.save(payment);
+		return paymentService.addPayment(payment);
 	}
 
 	@GetMapping("/all")
 	public List<Payment> getAllPayments() {
-		return repo.findAll();
+		return paymentService.getAllPayments();
 	}
 }
