@@ -8,15 +8,15 @@ import java.util.List;
 @RequestMapping("/api/account")
 public class AccountRestController {
 	@Autowired
-	private AccountRepo repo;
+	private AccountService accountService;
 
 	@PostMapping("/add")
 	public Account addAccount(@RequestBody Account account) {
-		return repo.save(account);
+		return accountService.saveAccount(account);
 	}
 
 	@GetMapping("/all")
 	public List<Account> getAllAccounts() {
-		return repo.findAll();
+		return accountService.getAllAccounts();
 	}
 }
