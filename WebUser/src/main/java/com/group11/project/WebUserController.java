@@ -7,17 +7,19 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class WebUserController {
+
 	@Autowired
 	private WebUserService webUserService;
 
 	@GetMapping("/webuser-form")
 	public String showForm(Model model) {
-		model.addAttribute("webuser", new WebUser());
-		return "webuser";
+
+		model.addAttribute("webUser", new WebUser());
+		return "index";
 	}
 
-	@PostMapping("/StoringWebUserData")
-	public String storeWebUser(@ModelAttribute WebUser webUser) {
+	@PostMapping("/StoringUserData")
+	public String storeWebUser(@ModelAttribute("webUser") WebUser webUser) {
 		webUserService.saveWebUser(webUser);
 		return "redirect:/webuser-form";
 	}
