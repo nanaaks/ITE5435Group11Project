@@ -7,18 +7,18 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class CustomerController {
-	@Autowired
-	private CustomerRepo repo;
+    @Autowired
+    private CustomerService customerService;
 
-	@GetMapping("/customer-form")
-	public String showForm(Model model) {
-		model.addAttribute("customer", new Customer());
-		return "customer";
-	}
+    @GetMapping("/customer-form")
+    public String showForm(Model model) {
+        model.addAttribute("customer", new Customer());
+        return "customer";
+    }
 
-	@PostMapping("/StoringCustomerData")
-	public String storeCustomer(@ModelAttribute Customer customer) {
-		repo.save(customer);
-		return "redirect:/customer-form";
-	}
+    @PostMapping("/StoringCustomerData")
+    public String storeCustomer(@ModelAttribute Customer customer) {
+        customerService.saveCustomer(customer);
+        return "redirect:/customer-form";
+    }
 }
